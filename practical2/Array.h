@@ -19,6 +19,12 @@
 template <class T>
 class Array
 {
+private:
+	T *elements;
+	int capacity;
+
+	inline void deepCopy(const Array<T> & original);
+
 public:
 	explicit Array(int size=0);
 	~Array();
@@ -37,13 +43,8 @@ public:
 	void print(std::ostream & os=std::cout) const;
 	std::string toString() const;
 
-private:
-	T *elements;
-	int capacity;
 
-	inline void deepCopy(const Array<T> & original);
 };
-
 
 // ========================= IMPLEMENTATION Array.cpp ===================================
 
@@ -96,7 +97,6 @@ Array<T>::Array(int size, int a[])
 	}
 }
 
-
 // PreCondition: None
 // PostCondition: array referenced by right is copied into this
 template <class T>
@@ -116,7 +116,6 @@ void Array<T>::initialise(T def) {
 	for(int i=0; i<capacity; i++)
 		elements[i] = def;
 }
-
 
 // PreCondition: memory allocated to elements has been released
 // PostCondition: copy of original used to initialise this arrasy
